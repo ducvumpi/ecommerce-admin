@@ -11,8 +11,8 @@ export default function BlogPostCreate() {
         mutationMode: "pessimistic",
     });
 
-    const { selectProps: categorySelectProps } = useSelect({
-        resource: "categories",
+    const { selectProps: variantIDSelectProps } = useSelect({
+        resource: "colors",
         optionLabel: "name",
         optionValue: "id",
     });
@@ -40,20 +40,16 @@ export default function BlogPostCreate() {
                     <Input />
                 </Form.Item>
 
-                <Form.Item label="Mô tả" name="description" rules={[{ required: true }]}>
+                <Form.Item label="Màu sắc" name="color" rules={[{ required: true }]}>
                     <Input.TextArea rows={5} />
                 </Form.Item>
 
-                <Form.Item label="Giá" name="price" rules={[{ required: true }]}>
+                <Form.Item label="Kích thước" name="size" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Slug-For-SEO" name="slug" rules={[{ required: true }]}>
-                    <Input />
+                <Form.Item label="Bộ màu sắc" name="name" rules={[{ required: true }]}>
+                    <Select {...variantIDSelectProps} />
                 </Form.Item>
-                <Form.Item label="Bộ sưu tập" name="category_id" rules={[{ required: true }]}>
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-
                 <Form.Item label="Hình ảnh" name="images" rules={[{ required: true }]}>
                     <Input placeholder="Nhập link ảnh" />
                 </Form.Item>

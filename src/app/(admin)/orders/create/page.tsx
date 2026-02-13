@@ -5,7 +5,7 @@ import { List, } from "antd";
 import React, { useState } from "react";
 import ImgCrop from "antd-img-crop";
 import { UploadOutlined } from "@ant-design/icons";
-import uploadFile from "../../api/uploadFile";
+import uploadFile from "../../../api/uploadFile";
 import { supabase } from "@app/libs/supabaseClient";
 import { Row, Col, Form, Input, Select, Upload, Button, UploadFile, UploadProps } from "antd";
 

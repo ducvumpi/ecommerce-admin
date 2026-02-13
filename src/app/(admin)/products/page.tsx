@@ -26,7 +26,7 @@ interface Product {
 
 export default function BlogPostList() {
   const { result, tableProps } = useTable({
-    resource: "variants",
+    resource: "products",
     syncWithLocation: true,
   });
 
@@ -57,11 +57,65 @@ export default function BlogPostList() {
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" />
         <Table.Column dataIndex="title" title="Tên sản phẩm" />
-        <Table.Column dataIndex="color" title="Màu sắc" />
-        <Table.Column dataIndex="size" title="Kích thước" />
+        <Table.Column dataIndex="description" title="Mô tả" />
         <Table.Column dataIndex="price" title="Giá" render={formatCurrency} />
 
+        {/* --- Category --- */}
+        <Table.Column
+          title="Bộ sưu tập"
+          render={(record: Product) => {
+            if (categoryIsLoading) return "Đang tải...";
 
+            const categories = (categoryQuery ?? []) as Category[];
+
+            const cat = categories.find(
+              (item: Category) => item.id === record.category_id
+            );
+
+            return cat?.name ?? "-";
+          }}
+        />
+
+        {/* --- Image list --- */}
+        <Table.Column
+          title="Hình ảnh"
+          dataIndex="images"
+          render={(images: string[] | string | null) => {
+            if (!images) return null;
+
+            let list: string[] = [];
+            try {
+              list = typeof images === "string" ? JSON.parse(images) : images;
+            } catch {
+              list = [];
+            }
+
+            return (
+              <>
+                {list?.map((img, index) =>
+                  typeof img === "string" && img && (
+                    <Image
+                      key={index}
+                      src={img}
+                      alt=""
+                      width={50}
+                      height={50}
+                      style={{ marginRight: 8, borderRadius: 6 }}
+                    />
+                  )
+                )}
+
+              </>
+            );
+          }}
+        />
+        <Table.Column dataIndex="instock" title="Số lượng tồn kho" />
+        {/* --- Date --- */}
+        <Table.Column
+          dataIndex="created_at"
+          title="Ngày khởi tạo"
+          render={(value: any) => <DateField value={value} />}
+        />
 
         {/* --- Actions --- */}
         <Table.Column

@@ -20,15 +20,16 @@ export default function BlogPostShow() {
 
   // Dùng useOne đúng cách
   const {
-    data: categoryData,
-    isLoading: categoryIsLoading,
+    query: categoryQuery,
   } = useOne({
     resource: "categories",
     id: categoryId,
     queryOptions: {
-      enabled: !!categoryId, // tránh gọi khi null
+      enabled: !!categoryId,
     },
   });
+
+  const categoryIsLoading = categoryQuery.isLoading;
 
   return (
     <Show isLoading={query.isLoading}>
@@ -46,7 +47,7 @@ export default function BlogPostShow() {
         value={
           categoryIsLoading
             ? "Loading..."
-            : categoryData?.data?.name ?? "-"
+            : categoryQuery.data?.data?.name ?? "-"
         }
       />
 

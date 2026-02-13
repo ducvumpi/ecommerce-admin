@@ -2,6 +2,10 @@ import { DataProvider } from "@refinedev/core";
 import { supabase } from "../../app/libs/supabaseClient";
 
 export const dataProvider: DataProvider = {
+  getApiUrl: () => {
+    return "";
+  },
+
   getList: async ({ resource, pagination }) => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
     const from = (current - 1) * pageSize;

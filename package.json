@@ -30,15 +30,20 @@
     "antd": "^5.23.0",
     "antd-img-crop": "^4.27.0",
     "axios": "^1.13.2",
+    "dayjs": "^1.11.19",
+    "file-saver": "^2.0.5",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.22",
     "lucide-react": "^0.562.0",
     "next": "^15.2.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "supabase": "^2.65.7"
+    "supabase": "^2.65.7",
+    "tailwind": "^4.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19.1.0",

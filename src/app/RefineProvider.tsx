@@ -9,6 +9,7 @@ import { AppIcon } from "@/components/app-icon";
 import { ColorModeContextProvider } from "@/contexts/color-mode";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import React from "react";
+import { authProvider } from "@providers/authProviders/authProvider";
 
 interface RefineProviderProps {
     children: React.ReactNode;
@@ -21,6 +22,7 @@ export function RefineProvider({ children, defaultMode }: RefineProviderProps) {
             <AntdRegistry>
                 <ColorModeContextProvider defaultMode={defaultMode}>
                     <Refine
+                        authProvider={authProvider}
                         routerProvider={routerProvider}
                         dataProvider={dataProviderSupabase}
                         notificationProvider={useNotificationProvider}
@@ -56,6 +58,30 @@ export function RefineProvider({ children, defaultMode }: RefineProviderProps) {
                                 meta: {
                                     label: "Màu sắc/Kích thước",
                                     canDelete: true,
+                                },
+                            },
+                            {
+                                name: "orders",
+                                list: "/orders",
+                                create: "/orders/create",
+                                edit: "/orders/edit/:id",
+                                show: "/orders/show/:id",
+                                meta: {
+                                    label: "Đơn hàng",
+                                    canDelete: true,
+                                },
+                            },
+                            {
+                                name: "colors",
+                                list: "/colors",
+                                create: "/colors/create",
+                                edit: "/colors/edit/:id",
+                                show: "/colors/show/:id",
+                                meta: {
+                                    label: "Màu sắc",
+                                    canDelete: true,
+                                    hide: true,
+
                                 },
                             },
 
